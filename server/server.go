@@ -17,11 +17,11 @@ import (
 var srv *http.Server
 
 func Start(cach *cache.Cache, configuration config.Configuration) {
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 
 	r.Use(cors.Default())
 	r.Use(middlewares.InitConnections(cach, configuration))
-	//gin.SetMode(gin.ReleaseMode)
 
 	routes.Weather(r)
 
